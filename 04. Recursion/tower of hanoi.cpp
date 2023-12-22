@@ -1,21 +1,24 @@
-#include<iostream>
-int toh(int,char,char,char);
-using namespace std;
-int main(){
-    
+#include <iostream>
+
+void toh(int n, char source, char auxiliary, char destination);
+
+int main() {
     int n;
-    cout<<"enter no. of disks ";
-    cin>>n;
-    toh(n,'a','b','c');
-}
-int toh(int n,char s,char a,char d){
-    if(n==1)
-    {
-        cout<<"move disk "<<n<<" from "<< s <<" to "<<d<<"\n";
-        return 0;
-    }
-    toh(n-1,s,d,a);
-    cout<<"move disk "<<n<<" from "<<s<<" to "<< d <<endl;
-    toh(n-1,a,s,d);
+    cout << "Enter the number of disks: ";
+    cin >> n;
+
+    toh(n, 'A', 'B', 'C');
+
     return 0;
+}
+
+void toh(int n, char source, char auxiliary, char destination) {
+    if (n == 1) {
+        cout << "Move disk 1 from " << source << " to " << destination << endl;
+        return;
+    }
+
+    toh(n - 1, source, destination, auxiliary);
+    cout << "Move disk " << n << " from " << source << " to " << destination << endl;
+    toh(n - 1, auxiliary, source, destination);
 }
